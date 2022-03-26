@@ -9,11 +9,18 @@
  */
 
 import React from 'react';
-import { StyleSheet, useColorScheme } from 'react-native';
+import { useColorScheme, LogBox } from 'react-native';
+import { Provider } from 'react-redux';
 
 import { NavigationContainer, DefaultTheme } from '@react-navigation/native';
 
 import { AppNavigatior } from './src/navigation/AppNavigatior';
+
+import { store } from './src/store/store';
+
+LogBox.ignoreLogs([
+  "[react-native-gesture-handler] Seems like you\'re using an old API with gesture components, check out new Gestures system!",
+]);
 
 const navTheme = {
   ...DefaultTheme,
@@ -31,29 +38,12 @@ const App = () => {
   // };
 
   return (
-    <NavigationContainer theme={navTheme}>
-      <AppNavigatior />
-    </NavigationContainer>
+    <Provider store={store}>
+      <NavigationContainer theme={navTheme}>
+        <AppNavigatior />
+      </NavigationContainer>
+    </Provider>
   );
 };
-
-const styles = StyleSheet.create({
-  sectionContainer: {
-    marginTop: 32,
-    paddingHorizontal: 24,
-  },
-  sectionTitle: {
-    fontSize: 24,
-    fontWeight: '600',
-  },
-  sectionDescription: {
-    marginTop: 8,
-    fontSize: 18,
-    fontWeight: '400',
-  },
-  highlight: {
-    fontWeight: '700',
-  },
-});
 
 export default App;
