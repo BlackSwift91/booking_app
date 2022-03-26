@@ -46,7 +46,7 @@ export const SignInScreen: React.FC<ISignInScreenProps> = () => {
         <TextInput style={styles.input} onChangeText={setUserEmail} value={userEmail} />
         <Text style={styles.text}>Пароль</Text>
         <TextInput style={styles.input} onChangeText={setUserPassword} value={userPassword} />
-        <Button onPress={signIn} title="Войти" color="#0071BC" accessibilityLabel="Learn more about this purple button" />
+        <Button onPress={signIn} title="Войти" color="#0071BC" accessibilityLabel="Войти" />
       </View>
     </View>
   );

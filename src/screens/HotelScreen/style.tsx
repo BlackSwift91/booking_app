@@ -5,6 +5,7 @@ export const styles = StyleSheet.create({
     flex: 1,
     width: '100%',
     backgroundColor: '#ffffff',
+    paddingHorizontal: 20,
   },
   textTitle: {
     color: 'black',
@@ -16,9 +17,10 @@ export const styles = StyleSheet.create({
     alignItems: 'center',
     justifyContent: 'space-between',
     flexDirection: 'row',
+    backgroundColor: '#ddffdd',
   },
   roomStyleDisabled: {
-    backgroundColor: '#cccccc',
+    backgroundColor: '#ffdddd',
     padding: 10,
     width: '100%',
     alignItems: 'center',
@@ -42,5 +44,11 @@ export const styles = StyleSheet.create({
     fontSize: 20,
     color: '#000000',
     paddingLeft: 10,
+  },
+  noRooms: {
+    marginTop: 30,
+    textAlign: 'center',
+    fontSize: 14,
+    color: '#ff0000',
   },
 });

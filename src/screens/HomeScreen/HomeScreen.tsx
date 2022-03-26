@@ -32,8 +32,8 @@ export const HomeScreen: React.FC<IHomeScreen> = ({ navigation }) => {
       firestore()
         .collection('hotels')
         .get()
-        .then(querySnapshot => {
-          querySnapshot.forEach(documentSnapshot => {
+        .then((querySnapshot: any) => {
+          querySnapshot.forEach((documentSnapshot: any) => {
             hotelList.push(documentSnapshot.data());
           });
           setHotels(hotelList);

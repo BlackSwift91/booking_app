@@ -4,6 +4,7 @@ export const styles = StyleSheet.create({
   center: {
     flex: 1,
     width: '100%',
+    paddingHorizontal: 20,
   },
   text: {
     color: 'black',

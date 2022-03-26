@@ -20,13 +20,13 @@ export const HotelScreen: React.FC<IHotelScreen> = ({ navigation, route }) => {
           .collection('hotels')
           .doc(`${route.params.hotelId}`)
           .collection('rooms')
+          .orderBy('isEmpty', 'desc')
           .get()
-          .then(querySnapshot => {
-            querySnapshot.forEach(documentSnapshot => {
+          .then((querySnapshot: any) => {
+            querySnapshot.forEach((documentSnapshot: any) => {
               roomsArray.push(documentSnapshot.data());
             });
             setRooms(roomsArray);
-            console.log(roomsArray);
           });
       }
     })();
@@ -53,17 +53,30 @@ export const HotelScreen: React.FC<IHotelScreen> = ({ navigation, route }) => {
   );
 
   const renderItem = ({ item }: { item: IFirebaseRoom }) => (
-    <Item title={item.title} id={item.id} number={item.number} price={item.price} isEmpty={item.isEmpty} />
+    <Item
+      title={item.title}
+      id={item.id}
+      number={item.number}
+      price={item.price}
+      isEmpty={item.isEmpty}
+      description={item.description}
+    />
   );
+  if (rooms?.length === 0) {
+    return (
+      <View style={styles.screenWrapper}>
+        <Text style={styles.noRooms}>В даный момент нет доступных номеров!</Text>
+      </View>
+    );
+  }
 
   return (
-    <View style={styles.screenWrapper}>
-      <FlatList
-        data={rooms}
-        renderItem={renderItem}
-        keyExtractor={item => item.id}
-        ListHeaderComponent={<Text style={styles.textTitle}>Доступные номера</Text>}
-      />
-    </View>
+    <FlatList
+      style={styles.screenWrapper}
+      data={rooms}
+      renderItem={renderItem}
+      keyExtractor={item => item.id}
+      ListHeaderComponent={<Text style={styles.textTitle}>Доступные номера</Text>}
+    />
   );
 };
