@@ -5,7 +5,7 @@ type NavigatorParamsList = {
   SignInScreen: undefined;
 };
 
-type RootNavigatorParamsList = {
+type HotelNavigatorParamsList = {
   HomeScreen: undefined;
   HotelScreen: {
     hotelId: string;
@@ -16,20 +16,28 @@ type RootNavigatorParamsList = {
   };
 };
 
+type ProfileNavigatorParamsList = {
+  ProfileScreen: undefined;
+};
+
 export interface ISignInScreenProps {
   navigation: StackNavigationProp<NavigatorParamsList, 'SignInScreen'>;
 }
 
 export interface IHomeScreen {
-  navigation: StackNavigationProp<RootNavigatorParamsList, 'HomeScreen'>;
+  navigation: StackNavigationProp<HotelNavigatorParamsList, 'HomeScreen'>;
 }
 
 export interface IHotelScreen {
-  navigation: StackNavigationProp<RootNavigatorParamsList, 'HotelScreen'>;
-  route: RouteProp<RootNavigatorParamsList, 'RoomScreen'>;
+  navigation: StackNavigationProp<HotelNavigatorParamsList, 'HotelScreen'>;
+  route: RouteProp<HotelNavigatorParamsList, 'RoomScreen'>;
 }
 
 export interface IRoomScreen {
-  navigation: StackNavigationProp<RootNavigatorParamsList, 'RoomScreen'>;
-  route: RouteProp<RootNavigatorParamsList, 'RoomScreen'>;
+  navigation: StackNavigationProp<HotelNavigatorParamsList, 'RoomScreen'>;
+  route: RouteProp<HotelNavigatorParamsList, 'RoomScreen'>;
+}
+
+export interface IProfileScreen {
+  navigation: StackNavigationProp<ProfileNavigatorParamsList, 'ProfileScreen'>;
 }

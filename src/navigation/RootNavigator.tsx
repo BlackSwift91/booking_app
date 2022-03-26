@@ -1,61 +1,35 @@
 import React from 'react';
-import { Text, StyleSheet } from 'react-native';
-import { useSelector } from 'react-redux';
-import { createStackNavigator } from '@react-navigation/stack';
+import MaterialCommunityIcons from 'react-native-vector-icons/MaterialCommunityIcons';
 
-import { HomeScreen } from '../screens/HomeScreen/HomeScreen';
-import { HotelScreen } from '../screens/HotelScreen/HotelScreen';
-import { RoomScreen } from '../screens/RoomScreen/RoomScreen';
-import { RootState } from '../store/store';
+import { createBottomTabNavigator } from '@react-navigation/bottom-tabs';
 
-const Stack = createStackNavigator();
+import { HotelNavigator } from './HotelNavigator';
+import { ProfileNavigator } from './ProfileNavigator';
+
+const Tab = createBottomTabNavigator();
 
 export function RootNavigator() {
-  const user = useSelector((state: RootState) => state.user);
-
   return (
-    <Stack.Navigator
+    <Tab.Navigator
       screenOptions={{
-        headerTransparent: false,
-        headerTintColor: '#000000',
-        headerTitleAlign: 'center',
-        headerRight: () => <Text style={styles.userBalance}>{user.balance}$</Text>,
-        headerTitle: () => <Text style={styles.appName}>Book.me</Text>,
+        headerShown: false,
+        tabBarShowLabel: false,
+        tabBarActiveTintColor: '#0071BC',
       }}>
-      <Stack.Screen
-        name="HomeScreen"
-        component={HomeScreen}
+      <Tab.Screen
         options={{
-          title: '',
+          tabBarIcon: ({ color }) => <MaterialCommunityIcons name="bed" color={color} size={30} />,
         }}
+        name="Hotel"
+        component={HotelNavigator}
       />
-      <Stack.Screen
-        name="HotelScreen"
-        component={HotelScreen}
+      <Tab.Screen
         options={{
-          title: '',
+          tabBarIcon: ({ color }) => <MaterialCommunityIcons name="account" color={color} size={30} />,
         }}
+        name="Profile"
+        component={ProfileNavigator}
       />
-      <Stack.Screen
-        name="RoomScreen"
-        component={RoomScreen}
-        options={{
-          title: '',
-        }}
-      />
-    </Stack.Navigator>
+    </Tab.Navigator>
   );
 }
-
-export const styles = StyleSheet.create({
-  appName: {
-    color: '#0071BC',
-    paddingHorizontal: 10,
-    fontSize: 20,
-    fontWeight: '700',
-  },
-  userBalance: {
-    color: '#000000',
-    paddingHorizontal: 10,
-  },
-});
